@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //   call
+        Function.prototype.Mycall = function (person) {
+            this.a = person.a;
+            this.b = person.b;
+            console.log("Who is boss:" + this.a + ' 虽然才' + this.b)
+        }
+        let person1 = new Function();
+        person2 = {
+            a: '轩轩jj',
+            b: 18
+        }
+        person1.Mycall(person2);
+        //    apply
+        Function.prototype.myApply = function (obj, arr) {
+            const newObj = obj ? Object(obj) : global;
+            newObj.fn = this;
+            let res;
+            if (arr) {
+                res = newObj.fn(...arr);
+            } else {
+                res = newObj.fn();
+            }
+            delete newObj.fn;
+            return res;
+        };
+
+    </script>
+</body>
+
+</html>
